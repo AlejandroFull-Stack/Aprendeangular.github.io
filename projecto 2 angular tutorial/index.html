@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guía Completa de Angular – Aprende desde Cero</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ENCABEZADO PRINCIPAL -->
+  <header>
+    <h1>Guía Completa de Angular</h1>
+    <p>Aprende a crear aplicaciones web dinámicas y escalables con TypeScript</p>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav>
+    <ul>
+      <li><a href="#introduccion">Introducción</a></li>
+      <li><a href="#requisitos">Requisitos Previos</a></li>
+      <li><a href="#instalacion">Instalación</a></li>
+      <li><a href="#hola-mundo">Hola Mundo</a></li>
+      <li><a href="#estructura-proyecto">Estructura del Proyecto</a></li>
+      <li><a href="#creacion-componentes">Creación de Componentes</a></li>
+      <li><a href="#servicios-http">Uso de Servicios y Peticiones HTTP</a></li>
+      <li><a href="#ruteo-angular">Ruteo en Angular</a></li>
+      <li><a href="#despliegue">Despliegue</a></li>
+      <li><a href="#conclusiones">Conclusiones</a></li>
+    </ul>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main>
+    
+    <!-- 1. INTRODUCCIÓN -->
+    <section id="introduccion">
+      <div style="text-align: center;" >    <img src="https://imgs.search.brave.com/u0r4ADb2b7mXD_-Hut9j65PgzVzjDvOArgp_QgSjK1I/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9vcGVu/c291cmNlLmdvb2ds/ZS9zdGF0aWMvaW1h/Z2VzL3Byb2plY3Rz/L29zLXByb2plY3Rz/LWFuZ3VsYXIuc3Zn" width="300" height="300">
+      </div>
+      <h2>1. Introducción</h2>
+      <p>
+        Angular es un <strong>framework de JavaScript</strong> (concretamente de <strong>TypeScript</strong>) 
+        que fue creado y es mantenido por Google. A lo largo de los años, se ha convertido en 
+        una de las herramientas más populares para el desarrollo de aplicaciones web de tipo 
+        <em>Single Page Applications (SPA)</em>. 
+      </p>
+      <p>
+        La principal ventaja de Angular radica en su <strong>arquitectura basada en componentes</strong>, 
+        que promueve la reusabilidad y la modularidad del código. Al usar TypeScript, obtendrás además 
+        tipado estático y un conjunto de características que te facilitan la escritura de código 
+        mantenible, especialmente para proyectos de gran envergadura.
+      </p>
+      <p>
+        En esta guía para principiantes, cubriremos la mayoría de los pasos básicos para que puedas, desde cero, 
+        crear tu primera aplicación, comprender la estructura de archivos de un proyecto Angular, 
+        y llegar hasta el despliegue en un entorno de producción. A medida que avances, descubrirás 
+        cómo Angular te permite:
+      </p>
+      <ul>
+        <li>Dividir la aplicación en módulos y componentes independientes.</li>
+        <li>Enlazar datos de forma declarativa (data-binding).</li>
+        <li>Utilizar servicios y hacer peticiones HTTP a APIs externas.</li>
+        <li>Navegar entre secciones con el sistema de rutas (routing).</li>
+        <li>Empaquetar y desplegar tu aplicación fácilmente.</li>
+      </ul>
+   
+    </section>
+
+    <!-- 2. REQUISITOS PREVIOS -->
+    <section id="requisitos">
+      <h2>2. Requisitos Previos</h2>
+      <p>
+        Aunque Angular se puede aprender desde cero, es muy recomendable que cuentes con algunos conocimientos 
+        básicos antes de embarcarte en el desarrollo de aplicaciones complejas. Por ejemplo:
+      </p>
+      <ul>
+        <li><strong>Fundamentos de JavaScript/TypeScript</strong>: Angular hace uso intensivo de TypeScript, así que 
+          es importante entender variables, funciones, clases, interfaces y algunos conceptos de programación orientada 
+          a objetos.</li>
+        <li><strong>HTML y CSS</strong>: Aunque Angular facilita la organización de vistas y estilos, necesitas tener 
+          claro cómo funciona la maquetación web básica y los selectores CSS.</li>
+        <li><strong>Manejo de la Terminal/CLI</strong>: Angular CLI es una herramienta poderosa que te permite crear, 
+          compilar y desplegar proyectos Angular de manera rápida. Familiarizarte con la terminal te hará el proceso 
+          mucho más fluido.</li>
+      </ul>
+      <p>
+        Si ya cumples con estos requisitos, genial. Si no, no te preocupes: puedes ir aprendiendo a la par que 
+        exploras Angular. Lo importante es tener la motivación para seguir investigando y construyendo proyectos.
+      </p>
+    </section>
+
+    <!-- 3. INSTALACIÓN -->
+    <section id="instalacion">
+      <h2>3. Instalación</h2>
+
+      <div class="content-block">
+        <h3>3.1 Instalando Node.js y Angular CLI</h3>
+        <p>
+          Para comenzar, necesitas tener <strong>Node.js</strong> instalado en tu sistema, preferiblemente en su versión LTS 
+          (por ejemplo, Node 14 o superior). Node incluye <code>npm</code>, el gestor de paquetes que nos permitirá 
+          instalar la herramienta de línea de comandos de Angular (<code>@angular/cli</code>).
+        </p>
+        <pre><code>
+# Instala Angular CLI globalmente en tu sistema:
+npm install -g @angular/cli
+
+# Verifica la versión instalada:
+ng version
+        </code></pre>
+        <p>
+          Con estos pasos, tendrás disponible el comando <code>ng</code> para generar nuevos proyectos, 
+          componentes y mucho más.
+        </p>
+      </div>
+
+      <div class="content-block">
+        <h3>3.2 Creando tu primer proyecto</h3>
+        <p>
+          Después de instalar el CLI, puedes crear un nuevo proyecto de Angular con:
+        </p>
+        <pre><code>
+ng new mi-primera-app
+        </code></pre>
+        <p>
+          Este comando te solicitará que elijas algunas configuraciones como el estilo que deseas usar 
+          (CSS, SCSS, etc.) y si quieres agregar routing. Para este ejemplo, podemos decir que “sí” a 
+          todo, o ajustarlo a nuestras preferencias. Una vez completado el proceso, tendrás una estructura 
+          de directorios lista para empezar a trabajar.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4. HOLA MUNDO EN ANGULAR -->
+    <section id="hola-mundo">
+      <h2>4. Hola Mundo</h2>
+
+      <p>
+        El clásico “Hola Mundo” es la forma más sencilla de confirmar que tu entorno de desarrollo está funcionando 
+        correctamente. Para ello, ejecuta:
+      </p>
+      <pre><code>
+cd mi-primera-app
+ng serve --open
+      </code></pre>
+      <div style="text-align: center; margin-top: 1rem;">
+      <img  src="image-11.png">
+    </div>
+      <p>
+        Este comando lanzará un servidor local y abrirá automáticamente la aplicación en tu navegador en la dirección 
+        <code>http://localhost:4200</code>. Deberías ver la página de bienvenida de Angular, donde verás la 
+        versión de Angular y un montón de enlaces y recursos.
+      </p>
+      <p>
+        Para personalizar tu “Hola Mundo”, edita el archivo <code>src/app/app.component.html</code> y borra todo 
+        su contenido para colocar algo así:
+      </p>
+      <pre><code>
+        &lt;h1&gt;¡Hola Mundo desde Angular!&lt;/h1&gt;
+        &lt;p&gt;Este es mi primer proyecto.&lt;/p&gt;
+
+      </code></pre>
+      <p>
+        Guarda el archivo y verás que el navegador se recarga automáticamente, mostrando ahora tu propio texto. 
+        ¡Felicidades! Has creado tu primer Hola Mundo en Angular.
+      </p>
+    </section>
+
+    <!-- 5. ESTRUCTURA DEL PROYECTO -->
+    <section id="estructura-proyecto">
+      <h2>5. Estructura del Proyecto</h2>
+      <p>
+        Cuando creas una aplicación con Angular CLI, obtendrás un conjunto de carpetas y archivos que constituyen 
+        la base de tu proyecto. Es importante entender para qué sirve cada parte:
+      </p>
+      <ul>
+        <li>
+          <code>src/</code>: Directorio principal con el código de la aplicación.
+          <ul>
+            <li><code>app/</code>: Contiene los componentes, servicios, módulos principales de tu aplicación.</li>
+            <li><code>assets/</code>: Para imágenes, fuentes, íconos o cualquier otro archivo estático.</li>
+            <li><code>environments/</code>: Para definir variables según entorno (desarrollo, producción, etc.).</li>
+          </ul>
+        </li>
+        <li><code>angular.json</code>: Archivo de configuración del CLI, donde defines estilos, scripts y otras 
+          opciones de compilación.</li>
+        <li><code>package.json</code>: Contiene metadatos del proyecto y las dependencias instaladas.</li>
+        <li><code>tsconfig.json</code>: Configuración de TypeScript para tu proyecto.</li>
+      </ul>
+      <p>
+        Para proyectos grandes, normalmente dividirás tu aplicación en múltiples módulos para organizar el código 
+        de forma más mantenible, por ejemplo: <strong>Módulo de Autenticación</strong>, <strong>Módulo de Usuarios</strong>, 
+        <strong>Módulo de Productos</strong>, etc.
+      </p>
+    </section>
+
+    <!-- 6. CREACIÓN DE COMPONENTES -->
+    <section id="creacion-componentes">
+      <h2>6. Creación de Componentes</h2>
+      <div class="content-block">
+        <h3>6.1 ¿Qué es un Componente?</h3>
+        <p>
+          Un componente en Angular es una pieza de la interfaz de usuario (UI) y de la lógica que la acompaña. 
+          Cada componente consta de:
+        </p>
+        <ul>
+          <li>Un archivo <code>.ts</code> que contiene la clase y la lógica del componente.</li>
+          <li>Una plantilla <code>.html</code> que describe la vista (UI).</li>
+          <li>Un archivo <code>.css</code> o <code>.scss</code> que contiene los estilos específicos.</li>
+        </ul>
+        <p>
+          Gracias a la inyección de dependencias, los componentes también pueden comunicarse fácilmente con servicios 
+          para obtener datos, ejecutar lógica de negocio, etc.
+        </p>
+      </div>
+      
+      <div class="content-block">
+        <h3>6.2 Generando un Nuevo Componente</h3>
+        <p>
+          Para crear un nuevo componente, utiliza el CLI con el siguiente comando:
+        </p>
+        <pre><code>
+ng generate component mi-componente
+        </code></pre>
+        <p>
+          Esto generará cuatro archivos en una carpeta llamada <code>mi-componente</code> dentro de <code>app/</code>:
+        </p>
+        <ul>
+          <li><code>mi-componente.component.ts</code></li>
+          <li><code>mi-componente.component.html</code></li>
+          <li><code>mi-componente.component.css</code></li>
+          <li><code>mi-componente.component.spec.ts</code> (para pruebas unitarias)</li>
+        </ul>
+        <p>
+          El archivo <code>.spec.ts</code> es opcional para comenzar, pero es muy útil a largo plazo para 
+          mantener pruebas unitarias de cada componente.
+        </p>
+      </div>
+
+      <div class="content-block">
+        <h3>6.3 Ejemplo de Lógica y Plantilla</h3>
+        <p>
+          Supongamos que queremos que nuestro componente muestre un mensaje de bienvenida con un contador 
+          que aumente cada vez que hagamos clic en un botón. Podríamos editar 
+          <code>mi-componente.component.ts</code> así:
+        </p>
+        <pre><code class="language-typescript">
+              // mi-componente.component.ts
+
+              import { Component } from '@angular/core';
+
+              @Component({
+                selector: 'app-mi-componente',
+                templateUrl: './mi-componente.component.html',
+                styleUrls: ['./mi-componente.component.css']
+              })
+              export class MiComponenteComponent {
+                mensaje: string = '¡Bienvenido a Mi Componente!';
+                contador: number = 0;
+
+                incrementarContador() {
+                  this.contador++;
+                }
+              }
+        </code></pre>
+        <p>
+          Luego, en la plantilla (<code>mi-componente.component.html</code>):
+        </p>
+        <pre><code>
+          &lt;h2&gt;{{ mensaje }}!&lt;/h2&gt;
+          &lt;p&gt;Has hecho clic {{ contador }} veces.&lt;/p&gt;
+<button (click)="incrementarContador()">¡Haz clic aquí!</button>
+        </code></pre>
+        <p>
+          Nota cómo usamos <code>{{ }}</code> para mostrar las variables <code>mensaje</code> y <code>contador</code>, 
+          y cómo detectamos el evento <code>(click)</code> para llamar al método 
+          <code>incrementarContador()</code>. Este es el data-binding y la interacción de eventos que hace tan 
+          poderoso a Angular.
+        </p>
+      </div>
+    </section>
+
+    <!-- 7. USO DE SERVICIOS Y PETICIONES HTTP -->
+    <section id="servicios-http">
+      <h2>7. Uso de Servicios y Peticiones HTTP</h2>
+      <p>
+        En una aplicación real, rara vez tenemos todos los datos en el propio cliente. Normalmente, debemos 
+        comunicarnos con APIs externas o con nuestro servidor para obtener datos (usuarios, productos, configuraciones, etc.). 
+        Para ello, Angular nos provee la clase <code>HttpClient</code>, que se utiliza inyectándola en un servicio.
+      </p>
+      
+      <div class="content-block">
+        <h3>7.1 Creando un Servicio</h3>
+        <p>
+          Usamos el CLI nuevamente:
+        </p>
+        <pre><code>
+ng generate service servicios/mi-servicio
+        </code></pre>
+        <p>
+          Esto creará un archivo <code>mi-servicio.service.ts</code> y un archivo de pruebas 
+          <code>mi-servicio.service.spec.ts</code>. Dentro de <code>mi-servicio.service.ts</code>, podrías tener algo así:
+        </p>
+        <pre><code class="language-typescript">
+// mi-servicio.service.ts
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MiServicioService {
+
+  private baseUrl = 'https://api.miapp.com'; // URL de tu API
+
+  constructor(private http: HttpClient) { }
+
+  obtenerDatos(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/datos`);
+  }
+
+  enviarDatos(payload: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/nuevo-dato`, payload);
+  }
+
+}
+        </code></pre>
+        <p>
+          Este servicio define métodos para <code>GET</code> y <code>POST</code> requests. Recuerda 
+          importar <code>HttpClientModule</code> en tu <code>app.module.ts</code> para poder usar 
+          <code>HttpClient</code>.
+        </p>
+      </div>
+
+      <div class="content-block">
+        <h3>7.2 Consumiendo el Servicio en un Componente</h3>
+        <p>
+          Una vez creado el servicio, podemos inyectarlo en cualquier componente. Por ejemplo:
+        </p>
+        <pre><code class="language-typescript">
+// mi-componente.component.ts (continuando ejemplo anterior)
+
+import { Component, OnInit } from '@angular/core';
+import { MiServicioService } from '../servicios/mi-servicio.service';
+
+@Component({
+  selector: 'app-mi-componente',
+  templateUrl: './mi-componente.component.html',
+  styleUrls: ['./mi-componente.component.css']
+})
+export class MiComponenteComponent implements OnInit {
+  datos: any[] = [];
+  errorMensaje: string = '';
+
+  constructor(private miServicio: MiServicioService) {}
+
+  ngOnInit(): void {
+    this.miServicio.obtenerDatos().subscribe({
+      next: (resultado) => {
+        this.datos = resultado;
+      },
+      error: (error) => {
+        this.errorMensaje = 'Error al obtener datos: ' + error.message;
+      }
+    });
+  }
+}
+        </code></pre>
+        <p>
+          Así, cuando el componente se inicie (<code>ngOnInit()</code>), se hará la petición HTTP a nuestra API, 
+          y almacenaremos el resultado en <code>this.datos</code>. En la plantilla (<code>mi-componente.component.html</code>), 
+          podrías mostrar esos datos, por ejemplo:
+        </p>
+        <pre><code>
+          &lt;div *ngIf="errorMensaje"&gt;
+          &lt;p&gt;{{ errorMensaje }}&lt;/p&gt;
+          &lt;/div&gt;
+
+          &lt;ul&gt;
+          &lt;li *ngFor="let item of datos"&gt;
+    {{ item.nombre }}
+    &lt;/li&gt;
+    &lt;/ul&gt;
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- 8. RUTEO EN ANGULAR -->
+    <section id="ruteo-angular">
+      <h2>8. Ruteo en Angular</h2>
+      <p>
+        Uno de los pilares de las SPA (Single Page Applications) es la habilidad de navegar entre diferentes 
+        vistas sin recargar por completo la página. Angular provee el <code>RouterModule</code>, que 
+        te permite definir rutas y asociarlas con componentes específicos.
+      </p>
+      <p>
+        Para usar el ruteo, generalmente en tu <code>app.module.ts</code>, creas un arreglo de rutas y lo 
+        importas:
+      </p>
+      <pre><code class="language-typescript">
+            import { NgModule } from '@angular/core';
+            import { BrowserModule } from '@angular/platform-browser';
+            import { RouterModule, Routes } from '@angular/router';
+            import { AppComponent } from './app.component';
+            import { MiComponenteComponent } from './mi-componente/mi-componente.component';
+            import { OtroComponenteComponent } from './otro-componente/otro-componente.component';
+
+            const routes: Routes = [
+              { path: '', component: MiComponenteComponent },
+              { path: 'otro', component: OtroComponenteComponent }
+            ];
+
+            @NgModule({
+              declarations: [
+                AppComponent,
+                MiComponenteComponent,
+                OtroComponenteComponent
+              ],
+              imports: [
+                BrowserModule,
+                RouterModule.forRoot(routes)  // Importa el ruteo aquí
+              ],
+              providers: [],
+              bootstrap: [AppComponent]
+            })
+            export class AppModule { }
+      </code></pre>
+      <p>
+        En tu plantilla principal (<code>app.component.html</code>), usas <code>&lt;router-outlet&gt;</code> 
+        para indicar dónde se cargará el contenido de cada ruta:
+      </p>
+      <pre><code>
+        &lt;nav&gt;
+        &lt;a routerLink="/">Inicio&lt;/a&gt;
+        &lt;a routerLink="/otro">Página Alternativa&lt;/a&gt;
+        &lt;/nav&gt;
+
+<!-- Aquí se mostrará el componente según la ruta -->
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+      </code></pre>
+      <p>
+        Con esto, cuando el usuario navegue a <code>/</code>, se cargará <code>MiComponenteComponent</code>, 
+        y cuando vaya a <code>/otro</code>, se cargará <code>OtroComponenteComponent</code>. 
+        ¡Sin recargar por completo la aplicación!
+      </p>
+    </section>
+
+    <!-- 9. DESPLIEGUE -->
+    <section id="despliegue">
+      <h2>9. Despliegue</h2>
+      <p>
+        Una vez que tu aplicación está lista para producción, Angular CLI ofrece un comando de build optimizado:
+      </p>
+      <pre><code>
+ng build --prod
+      </code></pre>
+      <p>
+        Esto generará una carpeta <code>dist/</code> con los archivos minificados y optimizados de tu aplicación. 
+        Podrás llevar esa carpeta a un servidor web (por ejemplo, Apache, NGINX, GitHub Pages, Firebase Hosting, 
+        etc.) sin complicaciones. Sólo recuerda que si usas un sistema de ruteo con 
+        <code>RouterModule</code>, puede que necesites una configuración especial de reescritura de URLs para 
+        que tu aplicación maneje correctamente las rutas en el lado del cliente.
+      </p>
+      <p>
+        Hoy en día existen múltiples opciones para desplegar aplicaciones Angular de manera sencilla:
+      </p>
+      <ul>
+        <li><strong>Firebase Hosting</strong>: Gratis hasta cierto límite, muy integrado con las herramientas de Google.</li>
+        <li><strong>GitHub Pages</strong>: Ideal para proyectos de demostración o documentación.</li>
+        <li><strong>Netlify</strong> y <strong>Vercel</strong>: Servicios de despliegue continuo muy populares con planes gratuitos.</li>
+        <li><strong>Servidores propios o VPS</strong>: Requiere mayor configuración manual, pero te brinda total control.</li>
+      </ul>
+    </section>
+
+    <!-- 10. CONCLUSIONES -->
+    <section id="conclusiones">
+      <h2>10. Conclusiones</h2>
+      <p>
+        A lo largo de estas secciones, hemos recorrido los principales aspectos de Angular: desde la 
+        instalación, el clásico Hola Mundo, la estructura de archivos, la creación de componentes y servicios, 
+        hasta el sistema de ruteo y la publicación de una aplicación en producción. 
+      </p>
+      <p>
+        Lo más valioso de Angular es su <strong>ecosistema</strong> y la filosofía de agrupar todo lo necesario 
+        para construir una aplicación moderna (inyección de dependencias, manejo de rutas, comunicación HTTP, 
+        compilación optimizada, etc.) de forma unificada y coherente.
+      </p>
+      <p>
+        Si has llegado hasta aquí, ya tienes las bases para embarcarte en proyectos más ambiciosos y explorar 
+        temas avanzados como:
+      </p>
+      <ul>
+        <li><strong>Lazy loading</strong> de módulos: para optimizar el rendimiento y cargar sólo lo necesario.</li>
+        <li><strong>State Management</strong> con NgRx o Akita: manejar el estado de la aplicación de forma 
+          predecible y escalable.</li>
+        <li><strong>Testing</strong> con Jasmine y Karma: asegurar la calidad del código con pruebas unitarias 
+          y de integración.</li>
+        <li><strong>Internacionalización (i18n)</strong>: para crear aplicaciones multi-idioma.</li>
+      </ul>
+      <p>
+        Espero que esta guía te haya sido de utilidad y te animes a seguir profundizando en el maravilloso mundo 
+        de Angular. Recuerda que la mejor forma de aprender es <strong>experimentar</strong>, así que no dudes 
+        en crear tus propios proyectos, probar librerías de terceros y sumergirte en la comunidad de desarrolladores 
+        que cada día colabora para que Angular siga evolucionando.
+      </p>
+      <p><em>¡Feliz aprendizaje y mucha suerte en tus futuros desarrollos!</em></p>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <p>© 2024 Guía Completa de Angular – Elaborado con fines educativos</p>
+    <p>Desarrollado por <strong>La Comunidad Angular</strong> y los entusiastas del código abierto</p>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+    });
+  </script>
+  
+</body>
+</html>
